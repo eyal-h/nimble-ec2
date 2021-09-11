@@ -13,9 +13,9 @@ resource "aws_security_group" "lb" {
   name   = "allow-all-lb"
   vpc_id = aws_vpc.nimble-vpc.id
   ingress {
-    from_port   = 80
-    to_port     = 8080
-    protocol    = "tcp"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
   egress {
