@@ -70,7 +70,7 @@ resource "aws_autoscaling_group" "asg" {
 
   target_group_arns     = [aws_alb_target_group.alb_target_group.arn]
   protect_from_scale_in = true
-#  lifecycle {
-#    create_before_destroy = true
-#  }
+  #  lifecycle {
+  #    create_before_destroy = true
+  #  }
 }
