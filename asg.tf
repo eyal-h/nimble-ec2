@@ -23,9 +23,9 @@ resource "aws_security_group" "ec2-sg" {
   description = "allow 80"
   vpc_id      = aws_vpc.nimble-vpc.id
   ingress {
-    from_port   = 80
-    to_port     = 8080
-    protocol    = "tcp"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
   egress {
@@ -69,8 +69,9 @@ resource "aws_autoscaling_group" "asg" {
   vpc_zone_identifier       = aws_subnet.public.*.id
 
   target_group_arns     = [aws_alb_target_group.alb_target_group.arn]
-  protect_from_scale_in = true
-  #  lifecycle {
-  #    create_before_destroy = true
-  #  }
+  protect_from_scale_in = false
+  force_delete = true
+    lifecycle {
+      create_before_destroy = true
+    }
 }
