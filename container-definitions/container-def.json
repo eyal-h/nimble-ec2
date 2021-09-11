@@ -1,0 +1,21 @@
+[
+    {
+      "name": "nimble",
+      "image": "eyalh054/test-app:latest",
+      "cpu": 10,
+      "memory": 256,
+      "essential": true,
+      "portMappings": [
+        {
+          "containerPort": 8080
+        }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": { 
+          "awslogs-group" : "/ecs/frontend-container",
+          "awslogs-region": "us-east-2"
+        }
+      }
+    }
+]
