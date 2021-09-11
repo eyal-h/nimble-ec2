@@ -45,7 +45,7 @@ resource "aws_ecs_service" "service" {
     container_name   = "nimble"
     container_port   = 8080
   }
-  
+
   lifecycle {
     ignore_changes = [desired_count]
   }
