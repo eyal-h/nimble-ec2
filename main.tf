@@ -3,7 +3,7 @@ terraform {
     organization = "nimble-company-assignment"
 
     workspaces {
-      name = "nimble-terraform-workspace"
+      name = "nimble-ec2-workspace"
     }
   }
 }
