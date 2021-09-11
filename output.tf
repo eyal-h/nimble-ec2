@@ -1,3 +1,3 @@
 output "alb_dns" {
-  value = aws_alb.test-lb.dns_name
+  value = aws_alb.nimble-lb.dns_name
 }

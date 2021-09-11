@@ -1,14 +1,14 @@
 resource "aws_ecs_cluster" "web-cluster" {
   name               = var.cluster_name
-  capacity_providers = [aws_ecs_capacity_provider.test.name]
+  capacity_providers = [aws_ecs_capacity_provider.cp.name]
   tags = {
     "env"       = "dev"
     "createdBy" = "eyal"
   }
 }
 
-resource "aws_ecs_capacity_provider" "test" {
-  name = "capacity-provider-test"
+resource "aws_ecs_capacity_provider" "cp" {
+  name = "capacity-provider"
   auto_scaling_group_provider {
     auto_scaling_group_arn         = aws_autoscaling_group.asg.arn
     managed_termination_protection = "ENABLED"
@@ -45,7 +45,7 @@ resource "aws_ecs_service" "service" {
     container_name   = "nimble"
     container_port   = 8080
   }
-  # Optional: Allow external changes without Terraform plan difference(for example ASG)
+  
   lifecycle {
     ignore_changes = [desired_count]
   }

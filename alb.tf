@@ -1,5 +1,5 @@
-resource "aws_alb" "test-lb" {
-  name               = "test-ecs-lb"
+resource "aws_alb" "nimble-lb" {
+  name               = "nimble-ecs-lb"
   load_balancer_type = "application"
   subnets            = aws_subnet.public.*.id
   tags = {
@@ -13,9 +13,9 @@ resource "aws_security_group" "lb" {
   name   = "allow-all-lb"
   vpc_id = aws_vpc.nimble-vpc.id
   ingress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
+    from_port   = 80
+    to_port     = 8080
+    protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
   egress {
@@ -48,7 +48,7 @@ resource "aws_alb_target_group" "alb_target_group" {
 }
 
 resource "aws_alb_listener" "web-listener" {
-  load_balancer_arn = aws_alb.test-lb.arn
+  load_balancer_arn = aws_alb.nimble-lb.arn
   port              = "80"
   protocol          = "HTTP"
   default_action {

@@ -1,5 +1,3 @@
-# network.tf
-
 resource "aws_vpc" "nimble-vpc" {
   cidr_block = "172.16.0.0/16"
 }
@@ -68,20 +66,3 @@ resource "aws_route_table_association" "private" {
   subnet_id      = element(aws_subnet.private.*.id, count.index)
   route_table_id = element(aws_route_table.private.*.id, count.index)
 }
-# module "vpc" {
-#   source         = "terraform-aws-modules/vpc/aws"
-#   #version        = "2.38.0"
-#   name           = "test_ecs_provisioning"
-#   cidr           = "10.0.0.0/16"
-#   azs            = ["us-east-1a", "us-east-1b", "us-east-1c"]
-#   public_subnets = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
-#   tags = {
-#     "env"       = "dev"
-#     "createdBy" = "eyal"
-#   }
-
-# }
-
-# data "aws_vpc" "main" {
-#   id = module.vpc.vpc_id
-# }
