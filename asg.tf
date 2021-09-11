@@ -69,7 +69,7 @@ resource "aws_autoscaling_group" "asg" {
   vpc_zone_identifier       = aws_subnet.public.*.id
 
   target_group_arns     = [aws_alb_target_group.alb_target_group.arn]
-  protect_from_scale_in = false
+  protect_from_scale_in = true
   force_delete          = true
   lifecycle {
     create_before_destroy = true
