@@ -55,6 +55,8 @@ The second issue that I have found is that when a server is created by terraform
 clients may be redirected to a new server that was just created, but our application is not running yet.
 to solve this issue we will add a  provisioner which will preform an application health check. terraform will declare that resource was successfully created only when the provisioner has completed without an error.
 
+we will create a server image and this image will be pushed to the environment with a new version of our app.
+
 I will use blue / green deployment strategy. i will deploy new servers and at the i will redirect the traffic from the load balancer to the new servers.
 
 for example we can add an service endpoint (ex: /health) that only when our application is fully started it will return HTTP 200 OK.
