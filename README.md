@@ -51,12 +51,8 @@ The main issue that I have found is that when we want to modify the image of an 
 To solve this issue we can use the lifecycle configuration which control the lifecycle on the resource.
 we will us create_before_destroy flag
 
-The second issue that I have found is that when a server is created by terraform, terraform is unaware if our application is running.
-clients may be redirected to a new server that was just created, but our application is not running yet.
-to solve this issue we will add a  provisioner which will preform an application health check. terraform will declare that resource was successfully created only when the provisioner has completed without an error.
+The second issue that I have found is that when a server is created by terraform, terraform is unaware if our application is running. clients may be redirected to a new server that was just created, but our application is not running yet. to solve this issue we will add a provisioner which will preform an application health check. terraform will declare that resource was successfully created only when the provisioner has completed without an error. for example we can add an service endpoint (ex: /health) that only when our application is fully started it will return HTTP 200 OK.
 
 we will create a server image and this image will be pushed to the environment with a new version of our app.
 
-I will use blue / green deployment strategy. i will deploy new servers and at the i will redirect the traffic from the load balancer to the new servers.
-
-for example we can add an service endpoint (ex: /health) that only when our application is fully started it will return HTTP 200 OK.
+I will use blue / green deployment strategy we can use tags. i will deploy new servers and at the end we will redirect the traffic from the load balancer to the new servers.
