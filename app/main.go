@@ -15,7 +15,7 @@ func RunAPI() {
 	apiRoutes := server.Group("")
 	apiRoutes.GET("", Hello)
 
-	err := server.Run("25565")
+	err := server.Run(":25565")
 	if err != nil {
 		log.Println("%V", err)
 	}
